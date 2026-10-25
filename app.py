@@ -23,7 +23,7 @@ st.markdown("""
 # Barra Lateral (Sidebar)
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/artificial-intelligence.png", width=64)
-    st.title("EditalAI Pro")
+    st.title("Editalis.ai Pro")
     st.caption("Estratégia de estudos inteligente.")
     
     st.divider()
@@ -38,15 +38,30 @@ with st.sidebar:
         
     st.divider()
     
+    # Seção de Apoio / Pix (Mercado Pago)
     st.markdown("### ☕ Apoie o Projeto")
-    st.markdown("Gostou da ferramenta? Pague um café para manter o servidor no ar!")
-    st.markdown("[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com)")
+    st.markdown("Gostou da ferramenta? Contribua com qualquer valor para manter o servidor no ar!")
     
+    # Botão estilizado para o Link de Pagamento do Mercado Pago (Substitua SEU_LINK_AQUI pelo link real gerado no MP)
+    st.markdown("""
+        <a href="https://mpago.la/2fd7ssC" target="_blank">
+            <div style="display: flex; align-items: center; justify-content: center; background-color: #009ee3; color: white; padding: 10px 15px; border-radius: 8px; font-weight: bold; text-align: decoration: none; margin-bottom: 10px;">
+                💙 Pagar um Café via Pix
+            </div>
+        </a>
+    """, unsafe_allow_html=True)
+    
+    # Opcional: QR Code estático (basta salvar a imagem como qrcode_pix.png na mesma pasta)
+    try:
+        st.image("qrcode_pix.png", caption="Escaneie o QR Code Pix", use_container_width=True)
+    except:
+        pass
+        
     st.divider()
     st.caption("Desenvolvido com foco em produtividade.")
 
 # Corpo Principal
-st.title("⚡ Estruturador de Editais & Matriz de Incidência")
+st.title("⚡ Editalis.ai - Estruturador de Editais & Matriz de Incidência")
 st.markdown("Cole o conteúdo programático do edital, defina o cargo e a banca para gerar uma estratégia de estudo direcionada.")
 
 # Exemplo padrão para teste rápido
@@ -60,10 +75,9 @@ col1, col2 = st.columns([2, 1])
 with col1:
     banca_opcao = st.selectbox("Banca Examinadora", [
         "Cebraspe (CESPE)", "FGV", "FCC", "Vunesp", "IBFC", 
-        "AOCP / Instituto AOCP", "Consulplan", "FGV", "Outra (Digitar manualmente)"
+        "AOCP / Instituto AOCP", "Consulplan", "Outra (Digitar manualmente)"
     ])
     
-    # Campo dinâmico caso escolha "Outra"
     if banca_opcao == "Outra (Digitar manualmente)":
         banca = st.text_input("Digite o nome da Banca Examinadora:", "Ex: Idecan / Quadrix")
     else:
@@ -72,7 +86,6 @@ with col1:
 with col2:
     cargo = st.text_input("Cargo Pretendido", "Ex: Analista Judiciário / Perito / Inspetor")
 
-# Botão de preencher exemplo
 if st.button("✨ Inserir Conteúdo de Exemplo"):
     st.session_state["edital_input"] = sample_content
 
@@ -83,7 +96,7 @@ edital_text = st.text_area(
     placeholder="Cole aqui apenas os tópicos e matérias extraídos do edital..."
 )
 
-# Botão de Execução com validação polida de API Key
+# Botão de Execução
 if st.button("🚀 Gerar Matriz Estratégica com IA", type="primary"):
     current_key = os.environ.get("GEMINI_API_KEY")
     
@@ -102,7 +115,7 @@ if st.button("🚀 Gerar Matriz Estratégica com IA", type="primary"):
                 Você é um especialista sênior em análise de concursos públicos e estrategista de aprovação de alta performance.
                 Analise o seguinte conteúdo programático para o cargo de '{cargo}' sob o perfil histórico e estilo de cobrança da banca '{banca}'.
                 
-                Refine a análise considerando o peso relativo do tema e de cada tópico na prova da referida banca.
+                Refine a análise considerando o peso relativo do tema na prova da referida banca.
                 
                 Retorne a resposta EXCLUSIVAMENTE em formato JSON (sem blocos de código markdown adicionais, apenas o JSON puro) contendo uma lista de objetos com as seguintes chaves:
                 - materia (nome da matéria)
