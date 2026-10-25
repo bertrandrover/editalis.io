@@ -5,7 +5,7 @@ import os
 
 # Configuração da Página
 st.set_page_config(
-    page_title="EditalAI - Matriz de Incidência",
+    page_title="Editalis.io - Matriz de Incidência",
     page_icon="⚡",
     layout="wide"
 )
