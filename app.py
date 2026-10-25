@@ -23,7 +23,7 @@ st.markdown("""
 # Barra Lateral (Sidebar)
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/artificial-intelligence.png", width=64)
-    st.title("Editalis.ai Pro")
+    st.title("Editalis.io Pro")
     st.caption("Estratégia de estudos inteligente.")
     
     st.divider()
@@ -61,7 +61,7 @@ with st.sidebar:
     st.caption("Desenvolvido com foco em produtividade.")
 
 # Corpo Principal
-st.title("⚡ Editalis.ai - Estruturador de Editais & Matriz de Incidência")
+st.title("⚡ Editalis.io - Estruturador de Editais & Matriz de Incidência")
 st.markdown("Cole o conteúdo programático do edital, defina o cargo e a banca para gerar uma estratégia de estudo direcionada.")
 
 # Exemplo padrão para teste rápido
